@@ -118,34 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MaximizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\MaximizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MinimizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\MinimizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MenuIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\MenuIconDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ClassIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\ClassIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BellIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\BellIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="DotIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\DotIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LogoutIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\LogoutIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="MainMenuIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\MainMenuIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="MaintainIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\MaintainIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AddIcon1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\AddIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CloseIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\img\CloseIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="DotIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\img\DotIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="AddIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\AddIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EditIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\EditIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MenuIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\MenuIconDefault.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MinimizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\MinimizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\SearchIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaintainIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\MaintainIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MaximizeIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\MaximizeIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BellIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\BellIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ClassIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\ClassIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="MainMenuIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\MainMenuIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RemoveIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\img\RemoveIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

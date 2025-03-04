@@ -7,9 +7,6 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="img\MenuIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
       <PrivateAssets>all</PrivateAssets>

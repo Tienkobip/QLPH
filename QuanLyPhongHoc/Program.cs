@@ -9,6 +9,7 @@ using DataAccess.Repository;
 using DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using QuanLyPhongHoc.MaintainRequestManagement;
 
 
 
@@ -22,12 +23,14 @@ namespace QuanLyPhongHoc
             string connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
             IServiceCollection services = new ServiceCollection();
 
-            // Đăng ký ApplicationDbContext vào DI container
+            // Add service to container
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<frmMenu>();
+            services.AddTransient<frmMaintainRequestControl>();
 
             serviceProvider = services.BuildServiceProvider();
+            services.AddSingleton<IServiceProvider>(serviceProvider); //Cần tìm hiểu lại
         }
 
     }

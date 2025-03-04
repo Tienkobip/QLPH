@@ -1,17 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataModels
 {
     public enum ClassroomType
     {
+        [Description("Lý thuyết")]
         LyThuyet,
+        [Description("Thực hành")]
         ThucHanh
     }
     public enum ClassroomStatus
     {
+        [Description("Đang sử dụng")]
         DangSuDung,
+        [Description("Đang trống")]
         DangTrong,
+        [Description("Đang sửa chữa")]
         DangSuaChua
     }
 

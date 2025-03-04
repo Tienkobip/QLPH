@@ -1,12 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataModels
 {
     public enum ReportType
     {
+        [Description("Bảo trì")]
         BaoTri,
+        [Description("Phòng không sử dụng")]
         PhongKhongSuDung,
+        [Description("Phòng thường gặp sự cố")]
         PhongThuongGapSuCo
     }
     public class Report

@@ -1,4 +1,6 @@
 ﻿using DataAccess.Data;
+using Microsoft.Extensions.DependencyInjection;
+using QuanLyPhongHoc.MaintainRequestManagement;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,17 +17,20 @@ namespace QuanLyPhongHoc
 {
     public partial class frmMenu : ResizableForm
     {
-        private readonly ApplicationDbContext _db;
-        private frmMaintain frmMaintain;
-        private frmNotification frmNotification;
-        private frmClassList frmClassList; 
-        private frmAddRemoveClass frmAddRemoveClass;
+        private readonly IServiceProvider serviceProvider;
+        private frmNotification? frmNotification;
+        private frmClassList? frmClassList; 
+        private frmAddRemoveClass? frmAddRemoveClass;
+        private frmMaintainRequestControl? frmMaintain;
 
-        public frmMenu(ApplicationDbContext dbContext)
+        public frmMenu(IServiceProvider _serviceProvider)
         {
+            // Nhận IServiceProvider thông qua DI để trả về các form đã đăng ký thay vì tạo các instance mới
+            serviceProvider = _serviceProvider;
             InitializeComponent();
-            _db = dbContext;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea; //Đảm bảo khi form maximize không che taskbar
+            this.serviceProvider = serviceProvider;
+
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
@@ -213,7 +218,7 @@ namespace QuanLyPhongHoc
         {
             if (frmMaintain == null || frmMaintain.IsDisposed)
             {
-                frmMaintain = new frmMaintain();
+                frmMaintain = serviceProvider.GetRequiredService<frmMaintainRequestControl>();
                 frmMaintain.FormClosed += frmMaintain_FormClosed;
                 frmMaintain.MdiParent = this;
                 frmMaintain.Dock = DockStyle.Fill;

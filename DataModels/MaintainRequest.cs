@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -6,14 +7,20 @@ namespace DataModels
 {
     public enum IssueType
     {
+        [Description("Hư hỏng thiết bị")]
         HuHongThietBi,
+        [Description("Sự cố phòng học")]
         SuCoPhongHoc,
+        [Description("Khác")]
         Khac
     }
     public enum IssueStatus
     {
+        [Description("Chưa xử lý")]
         ChuaXuLy,
+        [Description("Đang xử lý")]
         DangXuLy,
+        [Description("Đã hoàn thành")]
         DaHoanThanh
     }
 
@@ -41,6 +48,6 @@ namespace DataModels
         public virtual User User { get; set; }
         [ForeignKey("ClassroomID")]
         public virtual Classroom Classroom { get; set; }
-         
+ 
     }
 }

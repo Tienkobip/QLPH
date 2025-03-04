@@ -1,13 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataModels
 {
     public enum NotificationType
     {
+        [Description("Bảo trì")]
         BaoTri,
+        [Description("Cập nhập dữ liệu")]
         CapNhapDuLieu,
+        [Description("Xóa dữ liệu")]
         XoaDuLieu,
+        [Description("cảnh báo phòng học")]
         CanhBaoPhongHoc
     }
     public class Notification

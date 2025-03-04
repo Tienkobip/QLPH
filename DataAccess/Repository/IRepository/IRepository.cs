@@ -11,7 +11,7 @@ namespace DataAccess.Repository.IRepository
     {
         public IEnumerable<T> GetAll(string? includeProperty);
         public T Get(Expression<Func<T, bool>> filter, string? includeProperty);
-        public void Add(T enyity);
+        public void Add(T entity);
         public void Remove(T entity);
         public void RemoveRange(IEnumerable<T> entities);
     }

@@ -8,17 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QuanLyPhongHoc
+namespace QuanLyPhongHoc.MaintainRequestManagement
 {
-    public partial class frmMaintain : Form
+    public partial class frmMaintainRequestDetail: Form
     {
-        public frmMaintain()
+        public frmMaintainRequestDetail()
         {
             InitializeComponent();
-        }
-        private void frmMaintain_Load(object sender, EventArgs e)
-        {
-            this.FormBorderStyle = FormBorderStyle.None;   
         }
     }
 }
