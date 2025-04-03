@@ -35,6 +35,8 @@ namespace DataModels
         [Required]
         public ClassroomStatus Status { get; set; }
         [Required]
+        public int Capacity { get; set; }
+        [Required]
         [StringLength(50)]
         public string Location { get; set; }
     }

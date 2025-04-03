@@ -10,8 +10,13 @@ using DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using QuanLyPhongHoc.MaintainRequestManagement;
+using QuanLyPhongHoc.LoginAndCreateUser;
+using QuanLyPhongHoc.UserAccount.IUserAccount;
+using QuanLyPhongHoc.UserAccount;
+using QuanLyPhongHoc.frmPopUpAvatar;
+using QuanLyPhongHoc.frmPopUpAvatar.IAvatarPopUpFactory;
 
-
+using System.ComponentModel.Design;
 
 namespace QuanLyPhongHoc
 {
@@ -26,8 +31,20 @@ namespace QuanLyPhongHoc
             // Add service to container
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+                // Đăng ký các form vào service container để có thể nhận được IUnitOfWork
             services.AddTransient<frmMenu>();
-            services.AddTransient<frmMaintainRequestControl>();
+            services.AddTransient<frmRequestControl>();
+            services.AddTransient<frmRegisterUser>();
+            services.AddTransient<frmLogin>();
+            services.AddTransient<frmRequestAddOrUpdate>();
+            services.AddTransient<frmRegisterUser>();
+            services.AddTransient<frmClassroomManagement>();
+            services.AddSingleton<IAvatarPopUpFactory, AvatarPopUpFactory>();
+            services.AddTransient<MaintainValidCheck>();
+
+                // Lưu tài khoản người dùng khi đăng nhập thành công
+            services.AddSingleton<ICurrentAccount, CurrentAccount>();
+            services.AddScoped<IAccountAuth, UserAccount.AccountAuth>();
 
             serviceProvider = services.BuildServiceProvider();
             services.AddSingleton<IServiceProvider>(serviceProvider); //Cần tìm hiểu lại
@@ -53,8 +70,8 @@ namespace QuanLyPhongHoc
             }
 
             // Lấy formMenu từ DI Container
-            var menu = Startup.serviceProvider.GetRequiredService<frmMenu>();
-            Application.Run(menu);
+            var login = Startup.serviceProvider.GetRequiredService<frmLogin>();
+            Application.Run(login);
         }
     }
 }

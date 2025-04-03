@@ -181,5 +181,188 @@ namespace QuanLyPhongHoc.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+
+        internal static System.Drawing.Bitmap GradientBackground
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("GradientBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap LoginBackground
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("LoginBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap UserIconLogin
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("UserIconLogin", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap Password
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Password", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap ShowPasswordIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ShowPasswordIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap HidePasswordIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("HidePasswordIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap FacebookIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("FacebookIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+
+        internal static System.Drawing.Bitmap GoogleIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("GoogleIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+
+        internal static System.Drawing.Bitmap GithubIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("GithubIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+
+        internal static System.Drawing.Bitmap SignUpBackground
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("SignUpBackground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap SignUpIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("SignUpIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap MenuIconDefault
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("MenuIconDefault", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap MenuIconExpanded
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("MenuIconExpanded", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Image MenuIconTransition
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("MenuIconTransition", resourceCulture);
+                return ((System.Drawing.Image)(obj));
+            }
+        }
+
+        internal static System.Drawing.Image MenuIconTransitionReversed
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("MenuIconTransitionReversed", resourceCulture);
+                return ((System.Drawing.Image)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap SuccessIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("SuccessIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap ErrorIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("ErrorIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap WarningIcon
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("WarningIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap Avatar
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("Avatar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+
+        internal static System.Drawing.Bitmap DefaultAvatar
+        {
+            get
+            {
+                object obj = ResourceManager.GetObject("DefaultAvatar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

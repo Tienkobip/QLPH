@@ -9,9 +9,10 @@ namespace DataAccess.Repository.IRepository
     public interface IUnitOfWork
     {
         //ADD TABLE
+        IUser User { get; }
         IMaintainRequestManagementRepository RequestManagement { get; }
         IReportRepository Report { get; }
-
+        IClassroomManagementRepository Classroom { get; }
         void Save();
     }
 }

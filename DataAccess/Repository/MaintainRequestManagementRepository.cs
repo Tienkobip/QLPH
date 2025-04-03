@@ -1,5 +1,6 @@
 ﻿using DataAccess.Data;
 using DataAccess.Repository.IRepository;
+using DataAccess.Utility;
 using DataModels;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,24 +13,36 @@ namespace DataAccess.Repository
 {
     public class MaintainRequestManagementRepository : Repository<MaintainRequest>, IMaintainRequestManagementRepository
     {
-        private readonly ApplicationDbContext _db;
-        public MaintainRequestManagementRepository(ApplicationDbContext db) : base(db)
+        private readonly ApplicationDbContext db;
+        public MaintainRequestManagementRepository(ApplicationDbContext _db) : base(_db)
         {
-            _db = db;
+            db = _db;
         }
 
         public IEnumerable<string> GetRequestsList()
         {
-            return _db.MaintainRequests
+            return db.MaintainRequests
                       .Include(obj => obj.User) 
                       .Select(obj =>
-                          $"{obj.ID}, {obj.User.Name}, {obj.IssueType}, {obj.IssueStatus}, EDIT, DELETE"
+                          $"{obj.ID}," +
+                          $"{obj.User.Name}," +
+                          $"{EnumHelper.GetEnumDescription(obj.IssueType)}," +
+                          $"{EnumHelper.GetEnumDescription(obj.IssueStatus)}"
                       ).ToList();
         }
 
         public void Update(MaintainRequest obj)
         {
-            _db.MaintainRequests.Update(obj);
+            var requestFromDb = db.MaintainRequests.FirstOrDefault(u => u.ID == obj.ID);
+            if (requestFromDb != null)
+            {
+                requestFromDb.UserID = obj.UserID;
+                requestFromDb.ClassroomID = obj.ClassroomID;
+                requestFromDb.Date = DateTime.Now;
+                requestFromDb.IssueStatus = obj.IssueStatus;
+                requestFromDb.IssueType = obj.IssueType;
+                requestFromDb.Description = obj.Description;
+            }
         }
     }
 }

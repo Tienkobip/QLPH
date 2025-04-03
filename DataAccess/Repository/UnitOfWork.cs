@@ -15,13 +15,16 @@ namespace DataAccess.Repository
         public IMaintainRequestManagementRepository RequestManagement { get; private set; }
 
         public IReportRepository Report { get; private set; }
-
+        public IUser User { get; private set; }
+        public IClassroomManagementRepository Classroom { get; private set; }
         
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
             RequestManagement = new MaintainRequestManagementRepository(_db);
-            Report = new ReportRepository(db);
+            Report = new ReportRepository(_db);
+            User = new User(_db);
+            Classroom = new ClassroomManagementRepository(_db);
         }
 
         public void Save()

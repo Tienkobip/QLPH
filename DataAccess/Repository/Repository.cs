@@ -40,22 +40,6 @@ namespace DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll(string? includeProperty)
-        {
-            IQueryable<T> query = dbSet;
-
-            // Nếu bảng hiện tại có bảng khác chứa Foreign Key tham chiếu đến 
-            if (!string.IsNullOrEmpty(includeProperty))
-            {
-                foreach (var includeProp in includeProperty
-                                            .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProp);
-                }
-            }
-            return query.ToList();
-        }
-
         public void Remove(T entity)
         {
             dbSet.Remove(entity);

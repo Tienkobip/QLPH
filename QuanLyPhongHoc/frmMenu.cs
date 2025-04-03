@@ -12,29 +12,38 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyPhongHoc.CustomControls;
+using QuanLyPhongHoc.CustomNotification;
+using QuanLyPhongHoc.UserAccount.IUserAccount;
+using DataAccess.Repository.IRepository;
+using QuanLyPhongHoc.frmPopUpAvatar.IAvatarPopUpFactory;
 
 namespace QuanLyPhongHoc
 {
-    public partial class frmMenu : ResizableForm
+    public partial class frmMenu : ResizeableForm
     {
         private readonly IServiceProvider serviceProvider;
+        private readonly ICurrentAccount currentAccount;
+        private readonly IAvatarPopUpFactory PopUpAvatar;
         private frmNotification? frmNotification;
-        private frmClassList? frmClassList; 
+        private frmClassroomManagement? frmClassroom;
         private frmAddRemoveClass? frmAddRemoveClass;
-        private frmMaintainRequestControl? frmMaintain;
-
-        public frmMenu(IServiceProvider _serviceProvider)
+        private frmRequestControl? frmMaintain;
+        private frmPopUpAvatar.frmPopUpAvatar? frmPopUpAvatar;
+        public frmMenu(IServiceProvider _serviceProvider, ICurrentAccount _currentAccount, IAvatarPopUpFactory _PopUpFactory)
         {
             // Nhận IServiceProvider thông qua DI để trả về các form đã đăng ký thay vì tạo các instance mới
             serviceProvider = _serviceProvider;
+            currentAccount = _currentAccount;
+            PopUpAvatar = _PopUpFactory;
             InitializeComponent();
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea; //Đảm bảo khi form maximize không che taskbar
-            this.serviceProvider = serviceProvider;
-
+            GifTimerLoad();
         }
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
+            pictureBox_MenuIcon.Image = global::QuanLyPhongHoc.Properties.Resources.MenuIconDefault;
         }
 
         // MOVE FORM
@@ -61,30 +70,6 @@ namespace QuanLyPhongHoc
         }
 
         #region Transition
-        // MENU TRANSITION
-        private bool isMenuExpand = false;
-        private void MenuTransition_Tick(object sender, EventArgs e)
-        {
-            if (isMenuExpand == false)
-            {
-                ClassContainer.Height += 10;
-                if (ClassContainer.Size == ClassContainer.MaximumSize)
-                {
-                    MenuTransition.Stop();
-                    isMenuExpand = true;
-                }
-            }
-            else
-            {
-                ClassContainer.Height -= 10;
-                if (ClassContainer.Size == ClassContainer.MinimumSize)
-                {
-                    MenuTransition.Stop();
-                    isMenuExpand = false;
-                }
-            }
-        }
-
         // SIDEBAR TRANSITION
         private bool isSlidebarExpand = false;
         private void SlidebarTransition_Tick(object sender, EventArgs e)
@@ -142,33 +127,22 @@ namespace QuanLyPhongHoc
         // FORM CLASSLIST
         private void button_Class_Click(object sender, EventArgs e)
         {
-            if (isSlidebarExpand)
+            if (frmClassroom == null)
             {
-                MenuTransition.Start();
-            }
-            else
-            { 
-            }
-        }
-
-        private void panel_ClassList_Click(object sender, EventArgs e)
-        {
-            if (frmClassList == null)
-            {
-                frmClassList = new frmClassList();
-                frmClassList.FormClosed += frmClassList_FormClosed;
-                frmClassList.MdiParent = this;
-                frmClassList.Dock = DockStyle.Fill;
-                frmClassList.Show();
+                frmClassroom = serviceProvider.GetRequiredService<frmClassroomManagement>();
+                frmClassroom.FormClosed += frmClassroom_FormClosed;
+                frmClassroom.MdiParent = this;
+                frmClassroom.Dock = DockStyle.Fill;
+                frmClassroom.Show();
             }
             else
             {
-                frmClassList.Activate();
+                frmClassroom.Activate();
             }
         }
-        private void frmClassList_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmClassroom_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmClassList = null;
+            frmClassroom = null;
         }
 
         // FORM ADDREMOVECLASS
@@ -218,7 +192,7 @@ namespace QuanLyPhongHoc
         {
             if (frmMaintain == null || frmMaintain.IsDisposed)
             {
-                frmMaintain = serviceProvider.GetRequiredService<frmMaintainRequestControl>();
+                frmMaintain = serviceProvider.GetRequiredService<frmRequestControl>();
                 frmMaintain.FormClosed += frmMaintain_FormClosed;
                 frmMaintain.MdiParent = this;
                 frmMaintain.Dock = DockStyle.Fill;
@@ -293,51 +267,70 @@ namespace QuanLyPhongHoc
 
         private void pictureBox_MenuIcon_Click(object sender, EventArgs e)
         {
-            //FileImgPath imgPath = new FileImgPath(((PictureBox)sender).ImageLocation);
-            //pictureBox_GifFile_Click(sender, imgPath);
             SlidebarTransition.Start();
+            pictureBox_GifFile_Click();
         }
 
         // CHẠY CÁC FILE GIF KHI CLICK
+
         private Timer gifTimer = new Timer();
+        private void GifTimerLoad()
+        {
+            gifTimer.Interval = 400;
+            gifTimer.Tick += GifTimer_Tick;
+        }
+
         private bool isPlaying = false;
 
-        private void pictureBox_GifFile_Click(object sender, EventArgs args)
+        private void pictureBox_GifFile_Click()
         {
+            if (isPlaying) return; // Nếu đang chạy thì bỏ qua
 
+            isPlaying = true;
+            gifTimer.Start();
 
-            if (!isPlaying)
-            {
-                gifTimer.Interval = 590;
-                gifTimer.Tick += (s, ev) =>
-                {
-                    gifTimer.Stop();
-                    if (isSlidebarExpand == false)
-                    {
-                        // Giữ icon menu mặc định nếu như slidebar chưa expanded
-                        ((PictureBox)sender).Image = Image.FromFile(Application.StartupPath + "\\img\\MenuIconDefault.png");
-                    }
-                    else
-                    {
-                        // Khi đã expaned thì chỉnh qua icon đặc biệt
-                        ((PictureBox)sender).Image = Image.FromFile(Application.StartupPath + "\\img\\MenuIconExpanded.png");
-                    }
-                    isPlaying = false;
-                };
-                gifTimer.Start();
-                if (isSlidebarExpand == false)
-                {
-                    // File Gif chạy icon default sang icon đặc biệt
-                    ((PictureBox)sender).Image = Image.FromFile(Application.StartupPath + "\\img\\MenuIconTransition.gif");
-                }
-                else
-                {
-                    // File GIf chạy icon đặc biệt về icon default
-                    ((PictureBox)sender).Image = Image.FromFile(Application.StartupPath + "\\img\\MenuIconTransitionReversed.gif");
-                }
-                isPlaying = true;
-            }
+            // Chuyển icon sang GIF khi bắt đầu
+            pictureBox_MenuIcon.Image = isSlidebarExpand
+                ? Properties.Resources.MenuIconTransitionReversed
+                : Properties.Resources.MenuIconTransition;
+        }
+
+        private void GifTimer_Tick(object sender, EventArgs e)
+        {
+            gifTimer.Stop(); // Dừng Timer
+
+            // Chuyển icon sau khi GIF kết thúc
+            pictureBox_MenuIcon.Image = isSlidebarExpand
+                ? Properties.Resources.MenuIconExpanded
+                : Properties.Resources.MenuIconDefault;
+
+            // Cho phép click tiếp tục
+            isPlaying = false;
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var notification = new CustomNotification.frmCustomNotification("Đã click button", "warning");
+            notification.Show();
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Xin chào {currentAccount.CurrentUser.Name}");
+        }
+
+        private void roundPictureBox_Avatar_Click(object sender, EventArgs e)
+        {
+            if (frmPopUpAvatar != null)
+            {
+                frmPopUpAvatar.Close();
+                frmPopUpAvatar = null;
+            }
+            frmPopUpAvatar = PopUpAvatar.Create(roundPictureBox_Avatar.Image);
+            frmPopUpAvatar.Show();
+        }
+
     }
 }

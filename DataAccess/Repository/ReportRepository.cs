@@ -11,15 +11,23 @@ namespace DataAccess.Repository
 {
     class ReportRepository : Repository<Report>, IReportRepository
     {
-        private readonly ApplicationDbContext _db;
-        public ReportRepository(ApplicationDbContext db) : base(db)
+        private readonly ApplicationDbContext db;
+        public ReportRepository(ApplicationDbContext _db) : base(_db)
         {
-            _db = db;
+            db = _db;
         }
 
         public void Update(Report obj)
         {
-            _db.Reports.Update(obj);
+            var reportFromDb = db.Reports.FirstOrDefault(u => u.ID == obj.ID);
+            if (reportFromDb != null)
+            {
+                reportFromDb.Date = obj.Date;
+                reportFromDb.User = obj.User;
+                reportFromDb.Type = obj.Type;
+                reportFromDb.Content = obj.Content;
+            }
+
         }
     }
 }
