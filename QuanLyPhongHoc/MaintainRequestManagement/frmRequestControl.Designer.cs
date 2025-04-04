@@ -42,6 +42,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             editColumn = new DataGridViewButtonColumn();
             deleteColumn = new DataGridViewButtonColumn();
             panel_SearchControls = new Panel();
+            cbSearchInput = new ComboBox();
             textBox_SearchBox = new TextBox();
             cbSearchBy = new ComboBox();
             button_SearchIcon = new Button();
@@ -73,7 +74,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             // comboBox_entriesComboBox
             // 
             comboBox_entriesComboBox.Items.AddRange(new object[] { "10", "25", "50", "100" });
-            comboBox_entriesComboBox.Location = new Point(64, 12);
+            comboBox_entriesComboBox.Location = new Point(64, 6);
             comboBox_entriesComboBox.Name = "comboBox_entriesComboBox";
             comboBox_entriesComboBox.Size = new Size(60, 28);
             comboBox_entriesComboBox.TabIndex = 0;
@@ -92,24 +93,34 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             // 
             // panel_SearchControls
             // 
+            panel_SearchControls.Controls.Add(cbSearchInput);
             panel_SearchControls.Controls.Add(textBox_SearchBox);
             panel_SearchControls.Controls.Add(cbSearchBy);
             panel_SearchControls.Controls.Add(button_SearchIcon);
             panel_SearchControls.Dock = DockStyle.Left;
             panel_SearchControls.Location = new Point(0, 0);
             panel_SearchControls.Name = "panel_SearchControls";
-            panel_SearchControls.Padding = new Padding(5);
-            panel_SearchControls.Size = new Size(616, 50);
+            panel_SearchControls.Size = new Size(616, 52);
             panel_SearchControls.TabIndex = 0;
+            // 
+            // cbSearchInput
+            // 
+            cbSearchInput.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbSearchInput.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cbSearchInput.Location = new Point(175, 0);
+            cbSearchInput.Name = "cbSearchInput";
+            cbSearchInput.Size = new Size(396, 39);
+            cbSearchInput.TabIndex = 0;
+            cbSearchInput.Visible = false;
             // 
             // textBox_SearchBox
             // 
             textBox_SearchBox.Dock = DockStyle.Right;
             textBox_SearchBox.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_SearchBox.Location = new Point(175, 5);
+            textBox_SearchBox.Location = new Point(176, 0);
             textBox_SearchBox.Margin = new Padding(0);
             textBox_SearchBox.Name = "textBox_SearchBox";
-            textBox_SearchBox.Size = new Size(396, 38);
+            textBox_SearchBox.Size = new Size(400, 38);
             textBox_SearchBox.TabIndex = 1;
             textBox_SearchBox.KeyDown += textBox_SearchBox_KeyDown;
             // 
@@ -117,7 +128,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             // 
             cbSearchBy.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbSearchBy.FormattingEnabled = true;
-            cbSearchBy.Location = new Point(0, 12);
+            cbSearchBy.Location = new Point(0, 7);
             cbSearchBy.Name = "cbSearchBy";
             cbSearchBy.Size = new Size(151, 28);
             cbSearchBy.TabIndex = 3;
@@ -130,10 +141,10 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             button_SearchIcon.Dock = DockStyle.Right;
             button_SearchIcon.FlatAppearance.BorderSize = 0;
             button_SearchIcon.FlatStyle = FlatStyle.Flat;
-            button_SearchIcon.Location = new Point(571, 5);
+            button_SearchIcon.Location = new Point(576, 0);
             button_SearchIcon.Margin = new Padding(0);
             button_SearchIcon.Name = "button_SearchIcon";
-            button_SearchIcon.Size = new Size(40, 40);
+            button_SearchIcon.Size = new Size(40, 52);
             button_SearchIcon.TabIndex = 2;
             button_SearchIcon.UseVisualStyleBackColor = true;
             // 
@@ -220,7 +231,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             // label_entriesLabel
             // 
             label_entriesLabel.AutoSize = true;
-            label_entriesLabel.Location = new Point(133, 15);
+            label_entriesLabel.Location = new Point(133, 10);
             label_entriesLabel.Name = "label_entriesLabel";
             label_entriesLabel.Size = new Size(53, 20);
             label_entriesLabel.TabIndex = 1;
@@ -234,7 +245,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             button_CreateRequest.ForeColor = Color.White;
             button_CreateRequest.Location = new Point(720, 0);
             button_CreateRequest.Name = "button_CreateRequest";
-            button_CreateRequest.Size = new Size(182, 50);
+            button_CreateRequest.Size = new Size(182, 52);
             button_CreateRequest.TabIndex = 2;
             button_CreateRequest.Text = "✚ CREATE NEW REQUEST";
             button_CreateRequest.UseVisualStyleBackColor = false;
@@ -273,13 +284,13 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             dataGridView_Request.BorderStyle = BorderStyle.None;
             dataGridView_Request.ColumnHeadersHeight = 29;
             dataGridView_Request.Dock = DockStyle.Fill;
-            dataGridView_Request.Location = new Point(0, 70);
+            dataGridView_Request.Location = new Point(0, 72);
             dataGridView_Request.Name = "dataGridView_Request";
             dataGridView_Request.ReadOnly = true;
             dataGridView_Request.RowHeadersVisible = false;
             dataGridView_Request.RowHeadersWidth = 51;
             dataGridView_Request.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView_Request.Size = new Size(1308, 490);
+            dataGridView_Request.Size = new Size(1308, 488);
             dataGridView_Request.TabIndex = 2;
             dataGridView_Request.Tag = "dataGridView_Request";
             // 
@@ -291,7 +302,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             panel_ControlsContainer.Location = new Point(0, 0);
             panel_ControlsContainer.Name = "panel_ControlsContainer";
             panel_ControlsContainer.Padding = new Padding(10);
-            panel_ControlsContainer.Size = new Size(1308, 70);
+            panel_ControlsContainer.Size = new Size(1308, 72);
             panel_ControlsContainer.TabIndex = 1;
             // 
             // panel_EntriesShowContainer
@@ -308,7 +319,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             // 
             label_ShowLabel.AutoSize = true;
             label_ShowLabel.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label_ShowLabel.Location = new Point(0, 15);
+            label_ShowLabel.Location = new Point(0, 10);
             label_ShowLabel.Margin = new Padding(0);
             label_ShowLabel.Name = "label_ShowLabel";
             label_ShowLabel.Size = new Size(61, 20);
@@ -322,7 +333,7 @@ namespace QuanLyPhongHoc.MaintainRequestManagement
             panel_SearchAndCreate.Dock = DockStyle.Right;
             panel_SearchAndCreate.Location = new Point(396, 10);
             panel_SearchAndCreate.Name = "panel_SearchAndCreate";
-            panel_SearchAndCreate.Size = new Size(902, 50);
+            panel_SearchAndCreate.Size = new Size(902, 52);
             panel_SearchAndCreate.TabIndex = 3;
             // 
             // frmRequestControl

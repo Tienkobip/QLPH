@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,11 +20,16 @@ namespace DataAccess.Repository
             db = _db;
         }
 
-        public IEnumerable<string> GetRequestsList()
+        public IEnumerable<string> GetRequestsList(Expression<Func<MaintainRequest, bool>>? filter = null)
         {
-            return db.MaintainRequests
-                      .Include(obj => obj.User) 
-                      .Select(obj =>
+            IQueryable<MaintainRequest> query = dbSet.Include(obj => obj.User);
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return query.Select(obj =>
                           $"{obj.ID}," +
                           $"{obj.User.Name}," +
                           $"{EnumHelper.GetEnumDescription(obj.IssueType)}," +
